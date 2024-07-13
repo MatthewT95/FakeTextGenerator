@@ -124,17 +124,17 @@ function randomFakeWord(capitalize = false) {
 
   if (capitalize) {
     word = word[0].toUpperCase() + word.slice(1, word.length);
-    console.log(word[0]);
   }
 
   return word;
 }
 
-function randomFakeSentence(minWordCount = 4, maxWordCount = 14) {
+let noisePosition = 0;
+
+function randomFakeSentence(minWordCount = 10, maxWordCount = 16) {
   let sentence = "";
-  let wordCount = Math.round(
-    Math.random() * (maxWordCount - minWordCount) + minWordCount
-  );
+  let wordCount =
+    Math.ceil(Math.random() * (maxWordCount - minWordCount)) + minWordCount;
   for (let i = 0; i < wordCount; i++) {
     sentence += randomFakeWord(i == 0);
     if (i < wordCount - 1) {
@@ -144,6 +144,18 @@ function randomFakeSentence(minWordCount = 4, maxWordCount = 14) {
   sentence += ".";
   return sentence;
 }
+
+function randomFakeParagraph(minSentenceCount = 6, maxSentenceCount = 9) {
+  let paragraph = "";
+  let sentenceCount =
+    Math.ceil(Math.random() * (minSentenceCount - maxSentenceCount)) +
+    maxSentenceCount;
+  for (let i = 0; i < sentenceCount; i++) {
+    paragraph += randomFakeSentence();
+  }
+  return paragraph;
+}
+
 // Main code
 generateWordLengthDistributed();
 generateLetterDistributed();
