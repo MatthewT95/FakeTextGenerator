@@ -114,7 +114,7 @@ function randomLetter() {
   return letter;
 }
 
-function randomFakeWord() {
+function randomFakeWord(capitalize = false) {
   let wordLength = randomWordLength();
   let word = "";
 
@@ -122,9 +122,15 @@ function randomFakeWord() {
     word += randomLetter();
   }
 
+  if (capitalize) {
+    word = word[0].toUpperCase() + word.slice(1, word.length);
+    console.log(word[0]);
+  }
+
   return word;
 }
 
+function randomFakeSentence(wordCount) {}
 // Main code
 generateWordLengthDistributed();
 generateLetterDistributed();
