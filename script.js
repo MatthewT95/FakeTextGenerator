@@ -105,13 +105,24 @@ function generateLetterDistributed() {
 }
 
 function randomLetter() {
-  let letter = lettersDistributed[randomWordLengthIndex];
-  randomWordLengthIndex++;
+  let letter = lettersDistributed[randomLetterIndex];
+  randomLetterIndex++;
   if (randomLetterIndex >= lettersDistributed.length) {
     randomLetterIndex = 0;
     shuffle(lettersDistributed);
   }
   return letter;
+}
+
+function randomFakeWord() {
+  let wordLength = randomWordLength();
+  let word = "";
+
+  for (let i = 0; i < wordLength; i++) {
+    word += randomLetter();
+  }
+
+  return word;
 }
 
 // Main code
