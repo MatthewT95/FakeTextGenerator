@@ -13,8 +13,36 @@ let wordLengthFrequencies = {
   9: 1,
 };
 
-let wordLengthDistributed = [];
-let randomWordLengthIndex = 0;
+let firstLetterASCII = 97;
+let lastLetterASCII = 122;
+let letterFrequencies = {
+  a: 12,
+  b: 4,
+  c: 5,
+  d: 3,
+  e: 3,
+  f: 4,
+  g: 2,
+  h: 4,
+  i: 7,
+  j: 1,
+  k: 1,
+  l: 2,
+  m: 4,
+  n: 2,
+  o: 8,
+  p: 4,
+  q: 1,
+  r: 3,
+  s: 7,
+  t: 16,
+  u: 1,
+  v: 1,
+  w: 6,
+  x: 1,
+  y: 1,
+  z: 1,
+};
 
 // Functions
 function shuffle(array) {
@@ -33,6 +61,9 @@ function shuffle(array) {
     ];
   }
 }
+
+let wordLengthDistributed = [];
+let randomWordLengthIndex = 0;
 
 function generateWordLengthDistributed() {
   // loop over all word lengths
@@ -55,5 +86,34 @@ function randomWordLength() {
   return length;
 }
 
+let lettersDistributed = [];
+let randomLetterIndex = 0;
+
+function generateLetterDistributed() {
+  // loop over all word lengths
+  for (let i = firstLetterASCII; i <= lastLetterASCII; i++) {
+    // add word length value to disturbed array 4 times the frequency
+    for (
+      let j = 0;
+      j < Math.ceil(letterFrequencies[String.fromCharCode(i)]);
+      j++
+    ) {
+      lettersDistributed.push(String.fromCharCode(i));
+    }
+  }
+  shuffle(lettersDistributed);
+}
+
+function randomLetter() {
+  let letter = lettersDistributed[randomWordLengthIndex];
+  randomWordLengthIndex++;
+  if (randomLetterIndex >= lettersDistributed.length) {
+    randomLetterIndex = 0;
+    shuffle(lettersDistributed);
+  }
+  return letter;
+}
+
 // Main code
 generateWordLengthDistributed();
+generateLetterDistributed();
