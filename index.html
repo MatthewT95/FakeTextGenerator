@@ -6,12 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
-    <script defer src="./script.js"></script>
+    <script src="./FakeText.js"></script>
+    <script defer src="script.js"></script>
 </head>
 
 <body>
     <div id="interface">
-
+        <button id="generate-text">Generate</button>
+        <fieldset id="selectLengthMode" style="display: flex; flex-direction: column;">
+            <legend>Length mode</legend>
+            <label for="paragraph_count_mode">Paragraph count<input id="paragraph_count_mode" name="length_mode"
+                    type="radio" checked value="paragraph"></label>
+            <label for="sentence_count_mode">Sentence count<input id="sentence_count_mode" name="length_mode"
+                    type="radio" value="sentence"><label>
+        </fieldset>
     </div>
     <h1 class="center">Random Placeholder Text</h1>
     <div id="content">
