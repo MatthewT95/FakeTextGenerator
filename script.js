@@ -130,8 +130,11 @@ function randomFakeWord(capitalize = false) {
   return word;
 }
 
-function randomFakeSentence(wordCount) {
+function randomFakeSentence(minWordCount = 4, maxWordCount = 10) {
   let sentence = "";
+  let wordCount = Math.round(
+    Math.random() * (maxWordCount - minWordCount) + minWordCount
+  );
   for (let i = 0; i < wordCount; i++) {
     sentence += randomFakeWord(i == 0);
     if (i < wordCount - 1) {
