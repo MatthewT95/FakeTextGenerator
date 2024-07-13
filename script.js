@@ -162,7 +162,7 @@ generateLetterDistributed();
 
 let outputElement = document.getElementById("content");
 
-for (let i = 0; i < 5; i++) {
+for (let i = 0; i < 7; i++) {
   let paragraphElement = document.createElement("p");
   paragraphElement.innerText = randomFakeParagraph(7, 18);
   outputElement.append(paragraphElement);
