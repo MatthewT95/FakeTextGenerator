@@ -141,7 +141,7 @@ function randomFakeSentence(minWordCount = 10, maxWordCount = 16) {
       sentence += " ";
     }
   }
-  sentence += ".";
+  sentence += ". ";
   return sentence;
 }
 
@@ -159,3 +159,11 @@ function randomFakeParagraph(minSentenceCount = 6, maxSentenceCount = 9) {
 // Main code
 generateWordLengthDistributed();
 generateLetterDistributed();
+
+let outputElement = document.getElementById("content");
+
+for (let i = 0; i < 7; i++) {
+  let paragraphElement = document.createElement("p");
+  paragraphElement.innerText = randomFakeParagraph();
+  outputElement.append(paragraphElement);
+}
