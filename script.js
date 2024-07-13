@@ -4,10 +4,10 @@ let maxWordLength = 9;
 let wordLengthFrequencies = {
   1: 1,
   2: 3,
-  3: 4,
-  4: 8,
-  5: 6,
-  6: 3,
+  3: 3,
+  4: 9,
+  5: 7,
+  6: 4,
   7: 2,
   8: 1,
   9: 1,
@@ -130,7 +130,7 @@ function randomFakeWord(capitalize = false) {
   return word;
 }
 
-function randomFakeSentence(minWordCount = 4, maxWordCount = 10) {
+function randomFakeSentence(minWordCount = 4, maxWordCount = 14) {
   let sentence = "";
   let wordCount = Math.round(
     Math.random() * (maxWordCount - minWordCount) + minWordCount
