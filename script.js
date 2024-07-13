@@ -130,7 +130,17 @@ function randomFakeWord(capitalize = false) {
   return word;
 }
 
-function randomFakeSentence(wordCount) {}
+function randomFakeSentence(wordCount) {
+  let sentence = "";
+  for (let i = 0; i < wordCount; i++) {
+    sentence += randomFakeWord(i == 0);
+    if (i < wordCount - 1) {
+      sentence += " ";
+    }
+  }
+  sentence += ".";
+  return sentence;
+}
 // Main code
 generateWordLengthDistributed();
 generateLetterDistributed();
