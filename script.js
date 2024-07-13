@@ -44,6 +44,8 @@ let letterFrequencies = {
   z: 1,
 };
 
+let maxWordBankSize = 350;
+
 // Functions
 function shuffle(array) {
   let currentIndex = array.length;
@@ -59,6 +61,14 @@ function shuffle(array) {
       array[randomIndex],
       array[currentIndex],
     ];
+  }
+}
+
+function capitalizeWord(word) {
+  if (word.length == 1) {
+    return word.toUpperCase();
+  } else {
+    return word[0].toUpperCase() + word.slice(1, word.length);
   }
 }
 
@@ -114,7 +124,7 @@ function randomLetter() {
   return letter;
 }
 
-function randomFakeWord(capitalize = false) {
+function randomFakeWord() {
   let wordLength = randomWordLength();
   let word = "";
 
@@ -122,11 +132,29 @@ function randomFakeWord(capitalize = false) {
     word += randomLetter();
   }
 
-  if (capitalize) {
-    word = word[0].toUpperCase() + word.slice(1, word.length);
-  }
-
   return word;
+}
+
+let wordBank = [];
+
+function clearWordBank() {
+  wordBank = [];
+}
+
+function randomWordFromBank() {
+  let index = Math.round(Math.random() * wordBank.length + 10);
+  if (index >= wordBank.length) {
+    if (wordBank.length >= maxWordBankSize) {
+      let index = Math.round(Math.random() * (wordBank.length - 1));
+      return wordBank[index];
+    } else {
+      let newWord = randomFakeWord();
+      wordBank.push(newWord);
+      return newWord;
+    }
+  } else {
+    return wordBank[index];
+  }
 }
 
 let noisePosition = 0;
@@ -136,7 +164,11 @@ function randomFakeSentence(minWordCount = 10, maxWordCount = 16) {
   let wordCount =
     Math.ceil(Math.random() * (maxWordCount - minWordCount)) + minWordCount;
   for (let i = 0; i < wordCount; i++) {
-    sentence += randomFakeWord(i == 0);
+    let word = randomWordFromBank();
+    if (i == 0) {
+      word = capitalizeWord(word);
+    }
+    sentence += word;
     if (i < wordCount - 1) {
       sentence += " ";
     }
@@ -156,14 +188,20 @@ function randomFakeParagraph(minSentenceCount = 6, maxSentenceCount = 9) {
   return paragraph;
 }
 
+function refreshContent() {
+  let outputElement = document.getElementById("content");
+
+  outputElement.innerHTML = "";
+
+  for (let i = 0; i < 12; i++) {
+    let paragraphElement = document.createElement("p");
+    paragraphElement.innerHTML = randomFakeParagraph(7, 18);
+    outputElement.append(paragraphElement);
+  }
+}
+
 // Main code
 generateWordLengthDistributed();
 generateLetterDistributed();
 
-let outputElement = document.getElementById("content");
-
-for (let i = 0; i < 7; i++) {
-  let paragraphElement = document.createElement("p");
-  paragraphElement.innerText = randomFakeParagraph(7, 18);
-  outputElement.append(paragraphElement);
-}
+refreshContent();
