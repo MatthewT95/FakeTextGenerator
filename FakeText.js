@@ -142,7 +142,7 @@ function clearWordBank() {
 }
 
 function randomWordFromBank() {
-  let index = Math.round(Math.random() * wordBank.length + 10);
+  let index = Math.round(Math.random() * (wordBank.length + 20));
   if (index >= wordBank.length) {
     if (wordBank.length >= maxWordBankSize) {
       let index = Math.round(Math.random() * (wordBank.length - 1));
