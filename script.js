@@ -1,13 +1,13 @@
-let unitCount = 7;
-let unitType = "p";
+let unitCount = 5;
+let unitType = "s";
 let webPreviewMode = true;
 let outputElement = document.getElementById("content");
 
 function refreshContent() {
   if (unitType == "p") {
-    paragraphFill(outputElement, unitCount, [], ["p"]);
+    paragraphFill(outputElement, "u", unitCount, [], ["p"]);
   } else if (unitType == "s") {
-    sentenceFill(outputElement, unitCount, ["p"], []);
+    sentenceFill(outputElement, "u", unitCount, ["p"], []);
   }
   webPreviewMode = true;
 }

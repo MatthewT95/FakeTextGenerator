@@ -1,5 +1,6 @@
 function paragraphFill(
   targetElement,
+  mode,
   count = 3,
   tagWrappingsRoot = [],
   tagWrappings = ["p"]
@@ -30,7 +31,6 @@ function paragraphFill(
   }
 
   let generatedHTML = "";
-  targetElement.innerHTML = "";
 
   // Generate paragraphs in html
   for (let i = 0; i < unitCount; i++) {
@@ -39,17 +39,28 @@ function paragraphFill(
   }
 
   // output generated html embedded in root tags
-  targetElement.innerHTML =
-    openingWrappingRoot + generatedHTML + closingWrappingRoot;
+  if (mode == "u") {
+    targetElement.innerHTML =
+      openingWrappingRoot + generatedHTML + closingWrappingRoot;
+  } else if (mode == "a") {
+    targetElement.innerHTML +=
+      openingWrappingRoot + generatedHTML + closingWrappingRoot;
+  } else if (mode == "p") {
+    targetElement.innerHTML =
+      openingWrappingRoot +
+      generatedHTML +
+      closingWrappingRoot +
+      targetElement.innerHTML;
+  }
 }
 
 function sentenceFill(
   targetElement,
+  mode,
   count = 6,
   tagWrappingsRoot = ["p"],
   tagWrappings = []
 ) {
-  targetElement.innerHTML = "";
   let openingWrappingRoot = "";
   let closingWrappingRoot = "";
   let openingWrapping = "";
@@ -82,6 +93,17 @@ function sentenceFill(
   }
 
   // output generated html embedded in root tags
-  targetElement.innerHTML =
-    openingWrappingRoot + generatedHTML + closingWrappingRoot;
+  if (mode == "u") {
+    targetElement.innerHTML =
+      openingWrappingRoot + generatedHTML + closingWrappingRoot;
+  } else if (mode == "a") {
+    targetElement.innerHTML +=
+      openingWrappingRoot + generatedHTML + closingWrappingRoot;
+  } else if (mode == "p") {
+    targetElement.innerHTML =
+      openingWrappingRoot +
+      generatedHTML +
+      closingWrappingRoot +
+      targetElement.innerHTML;
+  }
 }
