@@ -1,14 +1,35 @@
-let unitCount = 5;
+let unitCount = 7;
 let unitType = "p";
-let plainText = false;
+let webPreviewMode = true;
+let outputElement = document.getElementById("content");
 
 function refreshContent() {
-  let outputElement = document.getElementById("content");
-
   if (unitType == "p") {
-    paragraphFill(outputElement, unitCount);
+    paragraphFill(outputElement, unitCount, [], ["p"]);
   } else if (unitType == "s") {
-    sentenceFill(outputElement, unitCount);
+    sentenceFill(outputElement, unitCount, ["p"], []);
+  }
+  webPreviewMode = true;
+}
+
+function toggleFormat() {
+  if (!webPreviewMode) {
+    let htmlVersion = outputElement
+      .getElementsByTagName("code")[0]
+      .innerHTML.toString();
+    htmlVersion = htmlVersion
+      .replaceAll("&gt;<br>&lt;", "&gt;&lt;")
+      .replaceAll("&lt;", "<")
+      .replaceAll("&gt;", ">");
+    outputElement.innerHTML = htmlVersion;
+    webPreviewMode = true;
+  } else {
+    let HTMLRawVersion = outputElement.innerHTML.toString();
+    HTMLRawVersion = HTMLRawVersion.replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll("&gt;&lt;", "&gt;<br>&lt;");
+    outputElement.innerHTML = "<code>" + HTMLRawVersion + "</code>";
+    webPreviewMode = false;
   }
 }
 
