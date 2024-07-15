@@ -44,7 +44,14 @@ let letterFrequencies = {
   z: 1,
 };
 
-let maxWordBankSize = 350;
+let wordBank = [];
+let fakeTextGeneratorSettings = {
+  sentenceMinLength: 10,
+  sentenceMaxLength: 16,
+  paragraphMinLength: 6,
+  paragraphMaxLength: 9,
+  maxWordBankSize: 350,
+};
 
 // Functions
 function shuffle(array) {
@@ -135,8 +142,6 @@ function randomFakeWord() {
   return word;
 }
 
-let wordBank = [];
-
 function clearWordBank() {
   wordBank = [];
 }
@@ -144,7 +149,7 @@ function clearWordBank() {
 function randomWordFromBank() {
   let index = Math.round(Math.random() * wordBank.length + 10);
   if (index >= wordBank.length) {
-    if (wordBank.length >= maxWordBankSize) {
+    if (wordBank.length >= fakeTextGeneratorSettings.maxWordBankSize) {
       let index = Math.round(Math.random() * (wordBank.length - 1));
       return wordBank[index];
     } else {
@@ -159,10 +164,12 @@ function randomWordFromBank() {
 
 let noisePosition = 0;
 
-function randomFakeSentence(minWordCount = 10, maxWordCount = 16) {
+function randomFakeSentence() {
   let sentence = "";
+  let minLength = fakeTextGeneratorSettings.sentenceMinLength;
+  let maxLength = fakeTextGeneratorSettings.sentenceMaxLength;
   let wordCount =
-    Math.ceil(Math.random() * (maxWordCount - minWordCount)) + minWordCount;
+    Math.round(Math.random() * (maxLength - minLength)) + minLength;
   for (let i = 0; i < wordCount; i++) {
     let word = randomWordFromBank();
     if (i == 0) {
@@ -177,11 +184,12 @@ function randomFakeSentence(minWordCount = 10, maxWordCount = 16) {
   return sentence;
 }
 
-function randomFakeParagraph(minSentenceCount = 6, maxSentenceCount = 9) {
+function randomFakeParagraph() {
   let paragraph = "";
+  let minLength = fakeTextGeneratorSettings.paragraphMinLength;
+  let maxLength = fakeTextGeneratorSettings.paragraphMaxLength;
   let sentenceCount =
-    Math.ceil(Math.random() * (minSentenceCount - maxSentenceCount)) +
-    maxSentenceCount;
+    Math.round(Math.random() * (maxLength - minLength)) + minLength;
   for (let i = 0; i < sentenceCount; i++) {
     paragraph += randomFakeSentence();
   }
