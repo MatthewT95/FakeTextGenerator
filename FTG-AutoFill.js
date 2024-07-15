@@ -10,12 +10,12 @@ function paragraphFill(
   let closingWrapping = "";
 
   // Build root opening tags
-  for (let i = 0; i < tagWrappings.length; i++) {
+  for (let i = 0; i < tagWrappingsRoot.length; i++) {
     openingWrappingRoot += "<" + tagWrappingsRoot[i] + ">";
   }
 
   // Build root closing tags
-  for (let i = tagWrappings.length - 1; i >= 0; i--) {
+  for (let i = tagWrappingsRoot.length - 1; i >= 0; i--) {
     closingWrappingRoot += "</" + tagWrappingsRoot[i] + ">";
   }
 
@@ -56,12 +56,12 @@ function sentenceFill(
   let closingWrapping = "";
 
   // Build root opening tags
-  for (let i = 0; i < tagWrappings.length; i++) {
+  for (let i = 0; i < tagWrappingsRoot.length; i++) {
     openingWrappingRoot += "<" + tagWrappingsRoot[i] + ">";
   }
 
   // Build root closing tags
-  for (let i = tagWrappings.length - 1; i >= 0; i--) {
+  for (let i = tagWrappingsRoot.length - 1; i >= 0; i--) {
     closingWrappingRoot += "</" + tagWrappingsRoot[i] + ">";
   }
 
