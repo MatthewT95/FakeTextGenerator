@@ -50,7 +50,7 @@ let fakeTextGeneratorSettings = {
   sentenceMaxLength: 16,
   paragraphMinLength: 6,
   paragraphMaxLength: 9,
-  maxWordBankSize: 350,
+  wordBankSize: 350,
 };
 
 // Functions
@@ -131,7 +131,12 @@ function randomLetter() {
   return letter;
 }
 
-function randomFakeWord() {
+function randomWordFromBank() {
+  let index = Math.round(Math.random() * (wordBank.length - 1));
+  return wordBank[index];
+}
+
+function generateFakeWord() {
   let wordLength = randomWordLength();
   let word = "";
 
@@ -142,34 +147,26 @@ function randomFakeWord() {
   return word;
 }
 
+function generateWordBank() {
+  let { wordBankSize } = fakeTextGeneratorSettings;
+  clearWordBank();
+  for (let i = 0; i < wordBankSize; i++) {
+    wordBank.push(generateFakeWord());
+  }
+}
+
 function clearWordBank() {
   wordBank = [];
 }
 
-function randomWordFromBank() {
-  let index = Math.round(Math.random() * (wordBank.length + 60));
-  if (index >= wordBank.length) {
-    if (wordBank.length >= fakeTextGeneratorSettings.maxWordBankSize) {
-      let index = Math.round(Math.random() * (wordBank.length - 1));
-      return wordBank[index];
-    } else {
-      let newWord = randomFakeWord();
-      wordBank.push(newWord);
-      return newWord;
-    }
-  } else {
-    return wordBank[index];
-  }
-}
-
 let noisePosition = 0;
 
-function randomFakeSentence() {
+function generateFakeSentence() {
   let sentence = "";
-  let minLength = fakeTextGeneratorSettings.sentenceMinLength;
-  let maxLength = fakeTextGeneratorSettings.sentenceMaxLength;
+  let { sentenceMinLength, sentenceMaxLength } = fakeTextGeneratorSettings;
   let wordCount =
-    Math.round(Math.random() * (maxLength - minLength)) + minLength;
+    Math.round(Math.random() * (sentenceMaxLength - sentenceMinLength)) +
+    sentenceMinLength;
   for (let i = 0; i < wordCount; i++) {
     let word = randomWordFromBank();
     if (i == 0) {
@@ -184,18 +181,18 @@ function randomFakeSentence() {
   return sentence;
 }
 
-function randomFakeParagraph() {
+function generateFakeParagraph() {
   let paragraph = "";
-  let minLength = fakeTextGeneratorSettings.paragraphMinLength;
-  let maxLength = fakeTextGeneratorSettings.paragraphMaxLength;
+  let { paragraphMinLength, paragraphMaxLength } = fakeTextGeneratorSettings;
   let sentenceCount =
-    Math.round(Math.random() * (maxLength - minLength)) + minLength;
+    Math.round(Math.random() * (paragraphMaxLength - paragraphMinLength)) +
+    paragraphMinLength;
   for (let i = 0; i < sentenceCount; i++) {
-    paragraph += randomFakeSentence();
+    paragraph += generateFakeSentence();
   }
   return paragraph;
 }
-
 // Main code
 generateWordLengthDistributed();
 generateLetterDistributed();
+generateWordBank();
