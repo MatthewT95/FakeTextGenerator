@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="style.css">
     <script src="./FakeText.js"></script>
     <script src="./FTG-AutoFill.js"></script>
-    <script src="./FakeHTML.js"></script>
     <script defer src="script.js"></script>
 </head>
 
@@ -17,13 +16,13 @@
         <button id="btnRegenerate">Regenerate</button>
         <button id="btnAppend">Append</button>
         <button id="btnPrepend">Prepend</button>
-        <fieldset id="selectLengthMode" style="display: flex; flex-direction: column;">
-            <legend>Length mode</legend>
-            <label for="paragraph_count_mode">Paragraphs<input id="paragraph_count_mode" name="length_mode" type="radio"
-                    checked value="paragraph"></label>
-            <label for="sentence_count_mode">Sentences<input id="sentence_count_mode" name="length_mode" type="radio"
-                    value="sentence"><label>
-        </fieldset>
+        <label id="lblBlockType" for="cbBlockMode">block type: </label>
+        <label id="lblBlockCount" for="numBlockCount">block count: </label>
+        <select id="cbBlockType">
+            <option value="p" id="cbBlockType-p">Paragraphs</option>
+            <option value="s" id="cbBlockType-s">Sentences</option>
+        </select>
+        <input type="number" id="numBlockCount" min="1" max="25" value="3">
     </div>
     <h1 class="center">Random Placeholder Text</h1>
     <div id="content">

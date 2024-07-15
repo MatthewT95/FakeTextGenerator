@@ -1,5 +1,5 @@
-let unitCount = 5;
-let unitType = "s";
+let blockCount = 5;
+let blockMode = "s";
 let webPreviewMode = true;
 let outputElement = document.getElementById("content");
 
@@ -9,10 +9,10 @@ function regenerateAllContent() {
     toggleFormat();
   }
 
-  if (unitType == "p") {
-    paragraphFill(outputElement, "u", unitCount, [], ["p"]);
-  } else if (unitType == "s") {
-    sentenceFill(outputElement, "u", unitCount, ["p"], []);
+  if (blockMode == "p") {
+    paragraphFill(outputElement, "u", blockCount, [], ["p"]);
+  } else if (blockMode == "s") {
+    sentenceFill(outputElement, "u", blockCount, ["p"], []);
   }
 
   if (!webPreviewModeHistory) {
@@ -25,10 +25,10 @@ function appendContent() {
   if (!webPreviewMode) {
     toggleFormat();
   }
-  if (unitType == "p") {
-    paragraphFill(outputElement, "a", unitCount, [], ["p"]);
-  } else if (unitType == "s") {
-    sentenceFill(outputElement, "a", unitCount, ["p"], []);
+  if (blockMode == "p") {
+    paragraphFill(outputElement, "a", blockCount, [], ["p"]);
+  } else if (blockMode == "s") {
+    sentenceFill(outputElement, "a", blockCount, ["p"], []);
   }
 
   if (!webPreviewModeHistory) {
@@ -41,10 +41,10 @@ function prependContent() {
   if (!webPreviewMode) {
     toggleFormat();
   }
-  if (unitType == "p") {
-    paragraphFill(outputElement, "p", unitCount, [], ["p"]);
-  } else if (unitType == "s") {
-    sentenceFill(outputElement, "p", unitCount, ["p"], []);
+  if (blockMode == "p") {
+    paragraphFill(outputElement, "p", blockCount, [], ["p"]);
+  } else if (blockMode == "s") {
+    sentenceFill(outputElement, "p", blockCount, ["p"], []);
   }
 
   if (!webPreviewModeHistory) {
@@ -76,6 +76,14 @@ function toggleFormat() {
 let btnRegenerate = document.getElementById("btnRegenerate");
 let btnAppend = document.getElementById("btnAppend");
 let btnPrepend = document.getElementById("btnPrepend");
+let cbBlockType = document.getElementById("cbBlockType");
+cbBlockType.addEventListener("change", () => {
+  blockMode = cbBlockType.value;
+});
+let numBlockCount = document.getElementById("numBlockCount");
+numBlockCount.addEventListener("change", () => {
+  blockCount = numBlockCount.value;
+});
 
 btnRegenerate.addEventListener("click", regenerateAllContent);
 btnAppend.addEventListener("click", appendContent);

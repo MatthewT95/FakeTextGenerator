@@ -43,11 +43,33 @@ body {
     grid-row: 3 / 4;
 }
 
-#interface #selectLengthMode {
+#interface #lblBlockType,
+#lblBlockCount {
+    font-size: 10pt;
+    align-items: center;
+    justify-items: center;
+    display: flex;
+    text-transform: uppercase;
+}
+
+#interface #lblBlockType {
     grid-column: 2 / 3;
-    grid-row: 1 / 4;
-    margin: 5px;
-    font-size: 14pt;
+    grid-row: 1 / 2;
+}
+
+#interface #lblBlockCount {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+}
+
+#interface #cbBlockType {
+    grid-column: 3 / 4;
+    grid-row: 1 / 2;
+}
+
+#interface #numBlockCount {
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
 }
 
 #interface #selectLengthMode legend {
