@@ -29,10 +29,13 @@ body {
 }
 
 #interface #selectLengthMode {
-    grid-column: 2 / 4;
+    grid-column: 2 / 3;
     grid-row: 1 / 4;
-    font-size: 16pt;
+    font-size: 14pt;
     margin: 5px;
+}
+
+#interface #selectLengthMode legend {
     text-align: center;
 }
 
