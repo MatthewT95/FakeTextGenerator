@@ -147,7 +147,7 @@ function clearWordBank() {
 }
 
 function randomWordFromBank() {
-  let index = Math.round(Math.random() * wordBank.length + 10);
+  let index = Math.round(Math.random() * (wordBank.length + 60));
   if (index >= wordBank.length) {
     if (wordBank.length >= fakeTextGeneratorSettings.maxWordBankSize) {
       let index = Math.round(Math.random() * (wordBank.length - 1));
