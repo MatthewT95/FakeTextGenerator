@@ -17,7 +17,7 @@ body {
     font-size: 10pt;
     background-color: burlywood;
     display: grid;
-    grid-template-columns: 130px 200px repeat(10, 1fr);
+    grid-template-columns: 130px 200px auto repeat(9, 1fr);
     grid-template-rows: repeat(3, 1fr);
     padding: 10px;
 }
@@ -84,6 +84,46 @@ body {
     display: block;
 }
 
+#interface #generationSettings {
+    grid-column: 3 /4;
+    grid-row: 1/4;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border: black 1px solid;
+}
+
+#interface #generationSettings>* {
+    width: 300px;
+    height: 30%;
+    box-sizing: border-box;
+}
+
+#interface #generationSettings>h2 {
+    padding: 5px;
+    margin: 5px;
+}
+
+#interface .genSettingInput {
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    padding: 5px;
+}
+
+#interface[data-gen-mode="normal"][data-gen-sub-mode="paragraphs"] .genSettingInput.paraCount {
+    display: flex;
+}
+
+#interface[data-gen-mode="normal"][data-gen-sub-mode="sentences"] .genSettingInput.senCount {
+    display: flex;
+}
+
+#interface .genSettingInput>* {
+    width: 50%;
+}
+
 .center {
     text-align: center;
 }
@@ -97,4 +137,8 @@ body {
 #interface button:hover {
     background-color: black;
     color: white;
+}
+
+.hidden {
+    display: none;
 }

@@ -37,6 +37,17 @@
                 <option value="ul-p">Unordered List (p)</option>
             </select>
         </div>
+        <div id="generationSettings">
+            <h2>Generation Settings</h2>
+            <div class="genSettingInput paraCount">
+                <label for="numParagraphCount">Paragraph Count: </label>
+                <input type="number" name="" id="numParagraphCount" min="1" max="10" value="1"></input>
+            </div>
+            <div class="genSettingInput senCount">
+                <label for="numSentenceCount">Sentence Count: </label>
+                <input type="number" name="" id="numSentenceCount" min="1" max="25" value="1"></input>
+            </div>
+        </div>
     </div>
     <h1 class="center">Random Placeholder Text</h1>
     <button onclick="toggleFormat()">Toggle format</button>

@@ -1,9 +1,24 @@
 let generationMode = "normal";
 let generationSubMode = "paragraphs";
+let generationSettings = {
+  sentenceCount: 5,
+  paragraphCount: 3,
+};
 let blockCount = 3;
 
 let webPreviewMode = true;
 let outputElement = document.getElementById("content");
+
+let inputParagraphCount = document.querySelector(
+  "#interface #numParagraphCount"
+);
+let inputSentenceCount = document.querySelector("#interface #numSentenceCount");
+
+function loadDefaultSettingsUI() {
+  let { paragraphCount, sentenceCount } = generationSettings;
+  inputParagraphCount.value = paragraphCount;
+  inputSentenceCount.value = sentenceCount;
+}
 
 function generateContent(mode = "u") {
   let webPreviewModeHistory = webPreviewMode;
@@ -13,9 +28,22 @@ function generateContent(mode = "u") {
 
   if (generationMode == "normal") {
     if (generationSubMode == "paragraphs") {
-      paragraphFill(outputElement, mode, blockCount, [], ["p"]);
+      paragraphFill(
+        outputElement,
+        mode,
+        generationSettings.paragraphCount,
+        [],
+        ["p"]
+      );
     } else if (generationSubMode == "sentences") {
-      sentenceFill(outputElement, mode, blockCount, ["p"], []);
+      console.log(generationSettings.sentenceCount);
+      sentenceFill(
+        outputElement,
+        mode,
+        generationSettings.sentenceCount,
+        ["p"],
+        []
+      );
     }
   } else if (generationMode == "list") {
     if (generationSubMode == "ol-s") {
@@ -65,6 +93,7 @@ let divGenerationMode = document.getElementById("divGenerationSubMode");
 let subModesSelects = document.querySelectorAll(
   "#interface #divGenerationSubMode select"
 );
+
 selGenerationMode.addEventListener("change", () => {
   generationMode = selGenerationMode.value;
   interface.dataset.genMode = selGenerationMode.value;
@@ -99,3 +128,4 @@ fakeTextGeneratorSettings.paragraphMaxLength = 15;
 fakeTextGeneratorSettings.sentenceMinLength = 8;
 fakeTextGeneratorSettings.sentenceMaxLength = 15;
 generateContent("u");
+loadDefaultSettingsUI();
