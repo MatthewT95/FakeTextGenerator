@@ -1,5 +1,5 @@
-let blockCount = 5;
-let blockMode = "s";
+let blockCount = 3;
+let blockMode = "p";
 let webPreviewMode = true;
 let outputElement = document.getElementById("content");
 
