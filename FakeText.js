@@ -46,10 +46,6 @@ let letterFrequencies = {
 
 let wordBank = [];
 let fakeTextGeneratorSettings = {
-  sentenceMinLength: 10,
-  sentenceMaxLength: 16,
-  paragraphMinLength: 6,
-  paragraphMaxLength: 9,
   wordBankSize: 350,
 };
 
@@ -161,9 +157,8 @@ function clearWordBank() {
 
 let noisePosition = 0;
 
-function generateFakeSentence() {
+function generateFakeSentence(sentenceMinLength = 10, sentenceMaxLength = 16) {
   let sentence = "";
-  let { sentenceMinLength, sentenceMaxLength } = fakeTextGeneratorSettings;
   let wordCount =
     Math.round(Math.random() * (sentenceMaxLength - sentenceMinLength)) +
     sentenceMinLength;
@@ -181,14 +176,18 @@ function generateFakeSentence() {
   return sentence;
 }
 
-function generateFakeParagraph() {
+function generateFakeParagraph(
+  paragraphMinLength = 6,
+  paragraphMaxLength = 9,
+  sentenceMinLength = 10,
+  sentenceMaxLength = 16
+) {
   let paragraph = "";
-  let { paragraphMinLength, paragraphMaxLength } = fakeTextGeneratorSettings;
   let sentenceCount =
     Math.round(Math.random() * (paragraphMaxLength - paragraphMinLength)) +
     paragraphMinLength;
   for (let i = 0; i < sentenceCount; i++) {
-    paragraph += generateFakeSentence();
+    paragraph += generateFakeSentence(sentenceMinLength, sentenceMaxLength);
   }
   return paragraph;
 }
