@@ -67,6 +67,27 @@ function shuffle(array) {
   }
 }
 
+// Why does this function not work
+function randBetween(minV, maxV, print = false) {
+  if (print) console.log("minV", minV);
+  let out = Math.floor(Math.random() * (maxV - minV + 1) + minV);
+  if (print)
+    console.log(
+      "v",
+      out,
+      Math.floor(0 * (maxV - minV + 1) + minV),
+      Math.floor(1 * (maxV - minV + 1) + minV)
+    );
+  if (out > maxV) console.log("k");
+  return out;
+}
+
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 function capitalizeWord(word) {
   if (word.length == 1) {
     return word.toUpperCase();
@@ -128,7 +149,7 @@ function randomLetter() {
 }
 
 function randomWordFromBank() {
-  let index = Math.round(Math.random() * (wordBank.length - 1));
+  let index = getRandomIntInclusive(0, wordBank.length - 1);
   return wordBank[index];
 }
 
@@ -159,9 +180,7 @@ let noisePosition = 0;
 
 function generateFakeSentence(sentenceMinLength = 10, sentenceMaxLength = 16) {
   let sentence = "";
-  let wordCount =
-    Math.round(Math.random() * (sentenceMaxLength - sentenceMinLength)) +
-    sentenceMinLength;
+  let wordCount = getRandomIntInclusive(sentenceMinLength, sentenceMaxLength);
   for (let i = 0; i < wordCount; i++) {
     let word = randomWordFromBank();
     if (i == 0) {
@@ -183,9 +202,12 @@ function generateFakeParagraph(
   sentenceMaxLength = 16
 ) {
   let paragraph = "";
-  let sentenceCount =
-    Math.round(Math.random() * (paragraphMaxLength - paragraphMinLength)) +
-    paragraphMinLength;
+  //console.log(paragraphMinLength, paragraphMaxLength);
+  let sentenceCount = getRandomIntInclusive(
+    paragraphMinLength,
+    paragraphMaxLength
+  );
+  console.log("b", sentenceCount);
   for (let i = 0; i < sentenceCount; i++) {
     paragraph += generateFakeSentence(sentenceMinLength, sentenceMaxLength);
   }
