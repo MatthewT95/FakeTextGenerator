@@ -13,9 +13,15 @@
 
 <body>
     <div id="interface">
+        <!-- Generation Buttons -->
         <button id="btnRegenerate">Regenerate</button>
         <button id="btnAppend">Append</button>
         <button id="btnPrepend">Prepend</button>
+        <!-- Generation Mode -->
+        <select id="selGenerationMode">
+            <option value="0">Plain Paragraphs</option>
+            <option value="1">Plain Sentences</option>
+        </select>
         <label id="lblBlockType" for="cbBlockMode">block type: </label>
         <label id="lblBlockCount" for="numBlockCount">block count: </label>
         <select id="cbBlockType">

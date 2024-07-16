@@ -1,50 +1,22 @@
+const generationModePlainParagraphs = 0;
+const generationModePlainSentences = 1;
+
+let generationMode = 0;
 let blockCount = 5;
 let blockMode = "s";
 let webPreviewMode = true;
 let outputElement = document.getElementById("content");
 
-function regenerateAllContent() {
+function generateContent(mode = "u") {
   let webPreviewModeHistory = webPreviewMode;
   if (!webPreviewMode) {
     toggleFormat();
   }
 
-  if (blockMode == "p") {
-    paragraphFill(outputElement, "u", blockCount, [], ["p"]);
-  } else if (blockMode == "s") {
-    sentenceFill(outputElement, "u", blockCount, ["p"], []);
-  }
-
-  if (!webPreviewModeHistory) {
-    toggleFormat();
-  }
-}
-
-function appendContent() {
-  let webPreviewModeHistory = webPreviewMode;
-  if (!webPreviewMode) {
-    toggleFormat();
-  }
-  if (blockMode == "p") {
-    paragraphFill(outputElement, "a", blockCount, [], ["p"]);
-  } else if (blockMode == "s") {
-    sentenceFill(outputElement, "a", blockCount, ["p"], []);
-  }
-
-  if (!webPreviewModeHistory) {
-    toggleFormat();
-  }
-}
-
-function prependContent() {
-  let webPreviewModeHistory = webPreviewMode;
-  if (!webPreviewMode) {
-    toggleFormat();
-  }
-  if (blockMode == "p") {
-    paragraphFill(outputElement, "p", blockCount, [], ["p"]);
-  } else if (blockMode == "s") {
-    sentenceFill(outputElement, "p", blockCount, ["p"], []);
+  if (generationMode == generationModePlainParagraphs) {
+    paragraphFill(outputElement, mode, blockCount, [], ["p"]);
+  } else if (generationMode == generationModePlainSentences) {
+    sentenceFill(outputElement, mode, blockCount, ["p"], []);
   }
 
   if (!webPreviewModeHistory) {
@@ -76,21 +48,26 @@ function toggleFormat() {
 let btnRegenerate = document.getElementById("btnRegenerate");
 let btnAppend = document.getElementById("btnAppend");
 let btnPrepend = document.getElementById("btnPrepend");
-let cbBlockType = document.getElementById("cbBlockType");
-cbBlockType.addEventListener("change", () => {
-  blockMode = cbBlockType.value;
-});
-let numBlockCount = document.getElementById("numBlockCount");
-numBlockCount.addEventListener("change", () => {
-  blockCount = numBlockCount.value;
+let selGenerationMode = document.getElementById("selGenerationMode");
+selGenerationMode.addEventListener("change", () => {
+  generationMode = selGenerationMode.value;
 });
 
-btnRegenerate.addEventListener("click", regenerateAllContent);
-btnAppend.addEventListener("click", appendContent);
-btnPrepend.addEventListener("click", prependContent);
+// let cbBlockType = document.getElementById("cbBlockType");
+// cbBlockType.addEventListener("change", () => {
+//   blockMode = cbBlockType.value;
+// });
+// let numBlockCount = document.getElementById("numBlockCount");
+// numBlockCount.addEventListener("change", () => {
+//   blockCount = numBlockCount.value;
+// });
+
+btnRegenerate.addEventListener("click", generateContent, "u");
+btnAppend.addEventListener("click", generateContent, "a");
+btnPrepend.addEventListener("click", generateContent, "p");
 
 fakeTextGeneratorSettings.paragraphMinLength = 10;
 fakeTextGeneratorSettings.paragraphMaxLength = 15;
 fakeTextGeneratorSettings.sentenceMinLength = 8;
 fakeTextGeneratorSettings.sentenceMaxLength = 15;
-regenerateAllContent();
+generateContent("u");
