@@ -69,16 +69,7 @@ function shuffle(array) {
 
 // Why does this function not work
 function randBetween(minV, maxV, print = false) {
-  if (print) console.log("minV", minV);
   let out = Math.floor(Math.random() * (maxV - minV + 1) + minV);
-  if (print)
-    console.log(
-      "v",
-      out,
-      Math.floor(0 * (maxV - minV + 1) + minV),
-      Math.floor(1 * (maxV - minV + 1) + minV)
-    );
-  if (out > maxV) console.log("k");
   return out;
 }
 
@@ -202,12 +193,10 @@ function generateFakeParagraph(
   sentenceMaxLength = 16
 ) {
   let paragraph = "";
-  //console.log(paragraphMinLength, paragraphMaxLength);
   let sentenceCount = getRandomIntInclusive(
     paragraphMinLength,
     paragraphMaxLength
   );
-  console.log("b", sentenceCount);
   for (let i = 0; i < sentenceCount; i++) {
     paragraph += generateFakeSentence(sentenceMinLength, sentenceMaxLength);
   }
