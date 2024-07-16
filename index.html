@@ -21,17 +21,18 @@
         <label id="lblGenerationMode" for="selGenerationMode">Generation Mode: </label>
         <select id="selGenerationMode">
             <option value="normal">Normal</option>
-            <option value="list">List</option>
+            <option value="list">Lists</option>
+            <option value="header">Headers</option>
             <option value="none">none</option>
         </select>
         <!-- Sub Generation Mode -->
         <div id="divGenerationSubMode">
             <select id="selNormalSubMode">
-                <option value="paragraphs">Paragraphs</option>
+                <option checked value="paragraphs">Paragraphs</option>
                 <option value="sentences">Sentences</option>
             </select>
             <select id="selListSubMode">
-                <option value="ol-s">Ordered List (s)</option>
+                <option checked value="ol-s">Ordered List (s)</option>
                 <option value="ul-s">Unordered List (s)</option>
                 <option value="ol-p">Ordered List (p)</option>
                 <option value="ul-p">Unordered List (p)</option>
@@ -66,6 +67,10 @@
             <div class="genSettingInput itemCount">
                 <label for="numItemCount">Item count: </label>
                 <input type="number" name="" id="numItemCount" min="1" max="30" value="6"></input>
+            </div>
+            <div class="genSettingInput headerLevel">
+                <label for="numHeaderLevel">Header Level: </label>
+                <input type="number" name="" id="numHeaderLevel" min="1" max="6" value="1"></input>
             </div>
         </div>
     </div>

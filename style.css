@@ -140,6 +140,12 @@ body {
     display: flex;
 }
 
+#interface[data-gen-mode="header"] :is(.headerLevel,
+    .senMinLen,
+    .senMaxLen) {
+    display: flex
+}
+
 #interface .genSettingInput>* {
     width: 50%;
 }

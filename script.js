@@ -8,6 +8,7 @@ let generationSettings = {
   sentenceMinLength: 9,
   sentenceMaxLength: 15,
   itemCount: 6,
+  headerLevel: 1,
 };
 let webPreviewMode = true;
 
@@ -40,7 +41,7 @@ let inputSentenceMaxLength = document.querySelector(
   "#interface #numSentenceMaxLength"
 );
 let inputItemCount = document.querySelector("#interface #numItemCount");
-
+let inputHeaderLevel = document.querySelector("#interface #numHeaderLevel");
 // Functions
 function loadDefaultSettingsUI() {
   let {
@@ -51,6 +52,7 @@ function loadDefaultSettingsUI() {
     sentenceMinLength,
     sentenceMaxLength,
     itemCount,
+    headerLevel,
   } = generationSettings;
   // Load default settings into UI
   inputParagraphCount.value = paragraphCount;
@@ -60,6 +62,7 @@ function loadDefaultSettingsUI() {
   inputSentenceMinLength.value = sentenceMinLength;
   inputSentenceMaxLength.value = sentenceMaxLength;
   inputItemCount.value = itemCount;
+  inputHeaderLevel.value = headerLevel;
 }
 
 function detectSettingsFromUI() {
@@ -70,6 +73,7 @@ function detectSettingsFromUI() {
   generationSettings.sentenceMinLength = inputSentenceMinLength.value;
   generationSettings.sentenceMaxLength = inputSentenceMaxLength.value;
   generationSettings.itemCount = inputItemCount.value;
+  generationSettings.headerLevel = inputHeaderLevel.value;
 }
 
 function generateContent(mode = "u") {
@@ -136,6 +140,16 @@ function generateContent(mode = "u") {
         generationSettings
       );
     }
+  } else if (generationMode == "header") {
+    let { headerLevel } = generationSettings;
+    sentenceFill(
+      outputElement,
+      mode,
+      1,
+      [],
+      ["h" + headerLevel],
+      generationSettings
+    );
   } else {
     outputElement.innerHTML = "";
   }
