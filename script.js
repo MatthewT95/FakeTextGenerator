@@ -8,11 +8,19 @@ let generationSettings = {
   sentenceMinLength: 9,
   sentenceMaxLength: 15,
 };
-let blockCount = 3;
-
 let webPreviewMode = true;
-let outputElement = document.getElementById("content");
 
+// Elements references
+let outputElement = document.getElementById("content");
+let interface = document.getElementById("interface");
+let btnRegenerate = document.getElementById("btnRegenerate");
+let btnAppend = document.getElementById("btnAppend");
+let btnPrepend = document.getElementById("btnPrepend");
+let selGenerationMode = document.getElementById("selGenerationMode");
+let divGenerationMode = document.getElementById("divGenerationSubMode");
+let subModesSelects = document.querySelectorAll(
+  "#interface #divGenerationSubMode select"
+);
 let inputParagraphCount = document.querySelector(
   "#interface #numParagraphCount"
 );
@@ -31,6 +39,7 @@ let inputSentenceMaxLength = document.querySelector(
   "#interface #numSentenceMaxLength"
 );
 
+// Functions
 function loadDefaultSettingsUI() {
   let {
     paragraphCount,
@@ -143,16 +152,7 @@ function toggleFormat() {
   }
 }
 
-let interface = document.getElementById("interface");
-let btnRegenerate = document.getElementById("btnRegenerate");
-let btnAppend = document.getElementById("btnAppend");
-let btnPrepend = document.getElementById("btnPrepend");
-let selGenerationMode = document.getElementById("selGenerationMode");
-let divGenerationMode = document.getElementById("divGenerationSubMode");
-let subModesSelects = document.querySelectorAll(
-  "#interface #divGenerationSubMode select"
-);
-
+// Event listeners
 selGenerationMode.addEventListener("change", () => {
   generationMode = selGenerationMode.value;
   interface.dataset.genMode = selGenerationMode.value;
@@ -182,9 +182,6 @@ btnRegenerate.addEventListener("click", () => generateContent("u"));
 btnAppend.addEventListener("click", () => generateContent("a"));
 btnPrepend.addEventListener("click", () => generateContent("p"));
 
-fakeTextGeneratorSettings.paragraphMinLength = 10;
-fakeTextGeneratorSettings.paragraphMaxLength = 15;
-fakeTextGeneratorSettings.sentenceMinLength = 8;
-fakeTextGeneratorSettings.sentenceMaxLength = 15;
+// Initial setup
 generateContent("u");
 loadDefaultSettingsUI();
