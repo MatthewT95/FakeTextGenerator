@@ -7,6 +7,7 @@ let generationSettings = {
   paragraphMaxLength: 10,
   sentenceMinLength: 9,
   sentenceMaxLength: 15,
+  itemCount: 6,
 };
 let webPreviewMode = true;
 
@@ -38,6 +39,7 @@ let inputSentenceMinLength = document.querySelector(
 let inputSentenceMaxLength = document.querySelector(
   "#interface #numSentenceMaxLength"
 );
+let inputItemCount = document.querySelector("#interface #numItemCount");
 
 // Functions
 function loadDefaultSettingsUI() {
@@ -48,6 +50,7 @@ function loadDefaultSettingsUI() {
     paragraphMaxLength,
     sentenceMinLength,
     sentenceMaxLength,
+    itemCount,
   } = generationSettings;
   // Load default settings into UI
   inputParagraphCount.value = paragraphCount;
@@ -56,6 +59,7 @@ function loadDefaultSettingsUI() {
   inputParagraphMaxLength.value = paragraphMaxLength;
   inputSentenceMinLength.value = sentenceMinLength;
   inputSentenceMaxLength.value = sentenceMaxLength;
+  inputItemCount.value = itemCount;
 }
 
 function detectSettingsFromUI() {
@@ -65,6 +69,7 @@ function detectSettingsFromUI() {
   generationSettings.paragraphMaxLength = inputParagraphMaxLength.value;
   generationSettings.sentenceMinLength = inputSentenceMinLength.value;
   generationSettings.sentenceMaxLength = inputSentenceMaxLength.value;
+  generationSettings.itemCount = inputItemCount.value;
 }
 
 function generateContent(mode = "u") {
@@ -84,7 +89,6 @@ function generateContent(mode = "u") {
         generationSettings
       );
     } else if (generationSubMode == "sentences") {
-      console.log(generationSettings.sentenceCount);
       sentenceFill(
         outputElement,
         mode,
@@ -99,7 +103,7 @@ function generateContent(mode = "u") {
       sentenceFill(
         outputElement,
         mode,
-        blockCount,
+        generationSettings.itemCount,
         ["ol"],
         ["li"],
         generationSettings
@@ -108,7 +112,7 @@ function generateContent(mode = "u") {
       sentenceFill(
         outputElement,
         mode,
-        blockCount,
+        generationSettings.itemCount,
         ["ul"],
         ["li"],
         generationSettings
@@ -117,7 +121,7 @@ function generateContent(mode = "u") {
       paragraphFill(
         outputElement,
         mode,
-        blockCount,
+        generationSettings.itemCount,
         ["ol"],
         ["li", "p"],
         generationSettings
@@ -126,7 +130,7 @@ function generateContent(mode = "u") {
       paragraphFill(
         outputElement,
         mode,
-        blockCount,
+        generationSettings.itemCount,
         ["ul"],
         ["li", "p"],
         generationSettings

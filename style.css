@@ -126,6 +126,20 @@ body {
     display: flex;
 }
 
+:is(#interface[data-gen-mode="list"][data-gen-sub-mode="ol-p"],
+    #interface[data-gen-mode="list"][data-gen-sub-mode="ul-p"]) :is(.senMinLen,
+    .senMaxLen,
+    .paraMinLen,
+    .paraMaxLen, .itemCount) {
+    display: flex;
+}
+
+:is(#interface[data-gen-mode="list"][data-gen-sub-mode="ol-s"],
+    #interface[data-gen-mode="list"][data-gen-sub-mode="ul-s"]) :is(.senMinLen,
+    .senMaxLen, .itemCount) {
+    display: flex;
+}
+
 #interface .genSettingInput>* {
     width: 50%;
 }
