@@ -39,12 +39,6 @@ function paragraphFill(
     sentenceMinLength,
     sentenceMaxLength,
   } = genSettings;
-  console.log(
-    paragraphMinLength,
-    paragraphMaxLength,
-    sentenceMinLength,
-    sentenceMaxLength
-  );
   // Generate paragraphs in html
   for (let i = 0; i < count; i++) {
     generatedHTML +=
