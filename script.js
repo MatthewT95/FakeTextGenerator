@@ -1,9 +1,14 @@
+<<<<<<< HEAD
 const generationModePlainParagraphs = 0;
 const generationModePlainSentences = 1;
 
 let generationMode = 0;
 let blockCount = 5;
 let blockMode = "s";
+=======
+let blockCount = 3;
+let blockMode = "p";
+>>>>>>> 50613ac0ab23db65f3bcac27111e0850f654eb7a
 let webPreviewMode = true;
 let outputElement = document.getElementById("content");
 
