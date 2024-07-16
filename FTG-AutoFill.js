@@ -3,7 +3,8 @@ function paragraphFill(
   mode,
   count = 3,
   tagWrappingsRoot = [],
-  tagWrappings = ["p"]
+  tagWrappings = ["p"],
+  genSettings = {}
 ) {
   let openingWrappingRoot = "";
   let closingWrappingRoot = "";
@@ -32,10 +33,29 @@ function paragraphFill(
 
   let generatedHTML = "";
 
+  let {
+    paragraphMinLength,
+    paragraphMaxLength,
+    sentenceMinLength,
+    sentenceMaxLength,
+  } = genSettings;
+  console.log(
+    paragraphMinLength,
+    paragraphMaxLength,
+    sentenceMinLength,
+    sentenceMaxLength
+  );
   // Generate paragraphs in html
   for (let i = 0; i < count; i++) {
     generatedHTML +=
-      openingWrapping + generateFakeParagraph() + closingWrapping;
+      openingWrapping +
+      generateFakeParagraph(
+        paragraphMinLength,
+        paragraphMaxLength,
+        sentenceMinLength,
+        sentenceMaxLength
+      ) +
+      closingWrapping;
   }
 
   // output generated html embedded in root tags
@@ -59,12 +79,14 @@ function sentenceFill(
   mode,
   count = 6,
   tagWrappingsRoot = ["p"],
-  tagWrappings = []
+  tagWrappings = [],
+  genSettings = {}
 ) {
   let openingWrappingRoot = "";
   let closingWrappingRoot = "";
   let openingWrapping = "";
   let closingWrapping = "";
+  let { sentenceMinLength, sentenceMaxLength } = genSettings;
 
   // Build root opening tags
   for (let i = 0; i < tagWrappingsRoot.length; i++) {
@@ -89,7 +111,10 @@ function sentenceFill(
   // Generate sentences in html
   let generatedHTML = "";
   for (let i = 0; i < count; i++) {
-    generatedHTML += openingWrapping + generateFakeSentence() + closingWrapping;
+    generatedHTML +=
+      openingWrapping +
+      generateFakeSentence(sentenceMinLength, sentenceMaxLength) +
+      closingWrapping;
   }
 
   // output generated html embedded in root tags
