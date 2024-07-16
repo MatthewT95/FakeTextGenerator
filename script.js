@@ -58,6 +58,15 @@ function loadDefaultSettingsUI() {
   inputSentenceMaxLength.value = sentenceMaxLength;
 }
 
+function detectSettingsFromUI() {
+  generationSettings.paragraphCount = inputParagraphCount.value;
+  generationSettings.sentenceCount = inputSentenceCount.value;
+  generationSettings.paragraphMinLength = inputParagraphMinLength.value;
+  generationSettings.paragraphMaxLength = inputParagraphMaxLength.value;
+  generationSettings.sentenceMinLength = inputSentenceMinLength.value;
+  generationSettings.sentenceMaxLength = inputSentenceMaxLength.value;
+}
+
 function generateContent(mode = "u") {
   let webPreviewModeHistory = webPreviewMode;
   if (!webPreviewMode) {
@@ -181,6 +190,9 @@ subModesSelects.forEach((subModeSelect) => {
 btnRegenerate.addEventListener("click", () => generateContent("u"));
 btnAppend.addEventListener("click", () => generateContent("a"));
 btnPrepend.addEventListener("click", () => generateContent("p"));
+
+// Intervals
+setInterval(detectSettingsFromUI, 250);
 
 // Initial setup
 generateContent("u");
