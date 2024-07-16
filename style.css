@@ -17,7 +17,7 @@ body {
     font-size: 10pt;
     background-color: burlywood;
     display: grid;
-    grid-template-columns: 130px 150px repeat(10, 1fr);
+    grid-template-columns: 130px 200px repeat(10, 1fr);
     grid-template-rows: repeat(3, 1fr);
     padding: 10px;
 }
@@ -52,28 +52,18 @@ body {
     text-transform: uppercase;
 }
 
-#interface #lblBlockType {
-    grid-column: 4 / 5;
-    grid-row: 1 / 2;
-}
-
-#interface #lblBlockCount {
-    grid-column: 4 / 5;
-    grid-row: 1 / 2;
-}
-
 #interface #lblGenerationMode {
-    grid-column: 2/4;
+    grid-column: 2/3;
     grid-row: 1/2;
 }
 
 #interface #selGenerationMode {
-    grid-column: 2/4;
+    grid-column: 2/3;
     grid-row: 2/3;
 }
 
 #interface #divGenerationSubMode {
-    grid-column: 2/4;
+    grid-column: 2/3;
     grid-row: 3/4;
 }
 
@@ -86,17 +76,12 @@ body {
     display: none;
 }
 
-#interface #divGenerationSubMode[data-genMode="normal"] #selNormalSubMode {
+#interface[data-gen-mode="normal"] #selNormalSubMode {
     display: block;
 }
 
-#interface #divGenerationSubMode[data-genMode="list"] #selListSubMode {
+#interface[data-gen-mode="list"] #selListSubMode {
     display: block;
-}
-
-#interface #numBlockCount {
-    grid-column: 5 / 6;
-    grid-row: 1 / 2;
 }
 
 .center {
