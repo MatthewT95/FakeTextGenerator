@@ -17,7 +17,7 @@ body {
     font-size: 10pt;
     background-color: burlywood;
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
+    grid-template-columns: 120px 150px repeat(10, 1fr);
     grid-template-rows: repeat(3, 1fr);
     padding: 10px;
 }
@@ -43,7 +43,7 @@ body {
     grid-row: 3 / 4;
 }
 
-#interface #lblBlockType,
+#interface #lblGenerationMode,
 #lblBlockCount {
     font-size: 10pt;
     align-items: center;
@@ -59,26 +59,40 @@ body {
 
 #interface #lblBlockCount {
     grid-column: 4 / 5;
-    grid-row: 2 / 3;
+    grid-row: 1 / 2;
 }
 
-#interface #selGenerationMode {
+#interface #lblGenerationMode {
     grid-column: 2/4;
     grid-row: 1/2;
 }
 
-#interface #cbBlockType {
-    grid-column: 5 / 6;
-    grid-row: 1 / 2;
+#interface #selGenerationMode {
+    grid-column: 2/4;
+    grid-row: 2/3;
+}
+
+#interface #divGenerationSubMode {
+    grid-column: 2/4;
+    grid-row: 3/4;
+}
+
+#interface #divGenerationSubMode select {
+    height: 100%;
+    width: 100%;
+}
+
+#interface #divGenerationSubMode select {
+    display: none;
+}
+
+#interface #divGenerationSubMode[data-genMode="normal"] #selNormalSubMode {
+    display: block;
 }
 
 #interface #numBlockCount {
     grid-column: 5 / 6;
-    grid-row: 2 / 3;
-}
-
-#interface #selectLengthMode legend {
-    text-align: center;
+    grid-row: 1 / 2;
 }
 
 .center {

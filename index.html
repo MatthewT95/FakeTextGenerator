@@ -18,17 +18,18 @@
         <button id="btnAppend">Append</button>
         <button id="btnPrepend">Prepend</button>
         <!-- Generation Mode -->
+        <label id="lblGenerationMode" for="selGenerationMode">Generation Mode: </label>
         <select id="selGenerationMode">
-            <option value="0">Plain Paragraphs</option>
-            <option value="1">Plain Sentences</option>
+            <option value="normal">Normal</option>
+            <option value="none">none</option>
         </select>
-        <label id="lblBlockType" for="cbBlockMode">block type: </label>
-        <label id="lblBlockCount" for="numBlockCount">block count: </label>
-        <select id="cbBlockType">
-            <option value="p" id="cbBlockType-p">Paragraphs</option>
-            <option value="s" id="cbBlockType-s">Sentences</option>
-        </select>
-        <input type="number" id="numBlockCount" min="1" max="25" value="3">
+        <!-- Sub Generation Mode -->
+        <div id="divGenerationSubMode" data-genMode="normal">
+            <select id="selNormalSubMode">
+                <option value="paragraphs">Paragraphs</option>
+                <option value="sentences">Sentences</option>
+            </select>
+        </div>
     </div>
     <h1 class="center">Random Placeholder Text</h1>
     <div id="content">

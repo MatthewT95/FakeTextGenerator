@@ -1,9 +1,7 @@
-const generationModePlainParagraphs = 0;
-const generationModePlainSentences = 1;
-
-let generationMode = 0;
+let generationMode = "normal";
+let generationSubMode = "paragraphs";
 let blockCount = 3;
-let blockMode = "p";
+
 let webPreviewMode = true;
 let outputElement = document.getElementById("content");
 
@@ -13,12 +11,15 @@ function generateContent(mode = "u") {
     toggleFormat();
   }
 
-  if (generationMode == generationModePlainParagraphs) {
-    paragraphFill(outputElement, mode, blockCount, [], ["p"]);
-  } else if (generationMode == generationModePlainSentences) {
-    sentenceFill(outputElement, mode, blockCount, ["p"], []);
+  if (generationMode == "normal") {
+    if (generationSubMode == "paragraphs") {
+      paragraphFill(outputElement, mode, blockCount, [], ["p"]);
+    } else if (generationSubMode == "sentences") {
+      sentenceFill(outputElement, mode, blockCount, ["p"], []);
+    }
+  } else {
+    outputElement.innerHTML = "";
   }
-
   if (!webPreviewModeHistory) {
     toggleFormat();
   }
@@ -49,22 +50,34 @@ let btnRegenerate = document.getElementById("btnRegenerate");
 let btnAppend = document.getElementById("btnAppend");
 let btnPrepend = document.getElementById("btnPrepend");
 let selGenerationMode = document.getElementById("selGenerationMode");
+let divGenerationMode = document.getElementById("divGenerationSubMode");
+let subModesSelects = document.querySelectorAll(
+  "#interface #divGenerationSubMode select"
+);
 selGenerationMode.addEventListener("change", () => {
   generationMode = selGenerationMode.value;
+  divGenerationMode.dataset.genmode = selGenerationMode.value;
+  let query = "#interface #divGenerationSubMode";
+  if (generationMode == "normal") {
+    generationSubMode = document.querySelector(
+      query + " #selNormalSubMode"
+    ).value;
+  } else {
+    generationSubMode = "";
+  }
 });
 
-// let cbBlockType = document.getElementById("cbBlockType");
-// cbBlockType.addEventListener("change", () => {
-//   blockMode = cbBlockType.value;
-// });
-// let numBlockCount = document.getElementById("numBlockCount");
-// numBlockCount.addEventListener("change", () => {
-//   blockCount = numBlockCount.value;
-// });
+subModesSelects.forEach((subModeSelect) => {
+  console.log(subModeSelect);
+  subModeSelect.addEventListener("change", (e) => {
+    generationSubMode = e.target.value;
+    console.log("e");
+  });
+});
 
-btnRegenerate.addEventListener("click", generateContent, "u");
-btnAppend.addEventListener("click", generateContent, "a");
-btnPrepend.addEventListener("click", generateContent, "p");
+btnRegenerate.addEventListener("click", () => generateContent("u"));
+btnAppend.addEventListener("click", () => generateContent("a"));
+btnPrepend.addEventListener("click", () => generateContent("p"));
 
 fakeTextGeneratorSettings.paragraphMinLength = 10;
 fakeTextGeneratorSettings.paragraphMaxLength = 15;
