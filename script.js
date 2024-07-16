@@ -9,6 +9,9 @@ let generationSettings = {
   sentenceMaxLength: 15,
   itemCount: 6,
   headerLevel: 1,
+  tableRowCount: 3,
+  tableColumnCount: 3,
+  tableHeadersOn: true,
 };
 let webPreviewMode = true;
 
@@ -51,6 +54,9 @@ function loadDefaultSettingsUI() {
     paragraphMaxLength,
     sentenceMinLength,
     sentenceMaxLength,
+    tableRowCount,
+    tableColumnCount,
+    tableHeadersOn,
     itemCount,
     headerLevel,
   } = generationSettings;
@@ -150,6 +156,8 @@ function generateContent(mode = "u") {
       ["h" + headerLevel],
       generationSettings
     );
+  } else if (generationMode == "table") {
+    tableFill(outputElement, mode, generationSettings);
   } else {
     outputElement.innerHTML = "";
   }

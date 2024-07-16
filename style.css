@@ -4,11 +4,12 @@ body {
 
 #content {
     font-size: 14pt;
-    width: 60vw;
+    width: 90vw;
     margin: auto;
     height: 70vh;
     overflow-y: scroll;
     background-color: lightblue;
+    padding: 10px;
 }
 
 #interface {
@@ -167,4 +168,12 @@ body {
 
 .hidden {
     display: none;
+}
+
+#content table,
+th,
+tr,
+td {
+    border: 2px black solid;
+    border-collapse: collapse;
 }
