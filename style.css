@@ -90,6 +90,10 @@ body {
     display: block;
 }
 
+#interface #divGenerationSubMode[data-genMode="list"] #selListSubMode {
+    display: block;
+}
+
 #interface #numBlockCount {
     grid-column: 5 / 6;
     grid-row: 1 / 2;

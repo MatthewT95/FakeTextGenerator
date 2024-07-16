@@ -17,6 +17,16 @@ function generateContent(mode = "u") {
     } else if (generationSubMode == "sentences") {
       sentenceFill(outputElement, mode, blockCount, ["p"], []);
     }
+  } else if (generationMode == "list") {
+    if (generationSubMode == "ol-s") {
+      sentenceFill(outputElement, mode, blockCount, ["ol"], ["li"]);
+    } else if (generationSubMode == "ul-s") {
+      sentenceFill(outputElement, mode, blockCount, ["ul"], ["li"]);
+    } else if (generationSubMode == "ol-p") {
+      paragraphFill(outputElement, mode, blockCount, ["ol"], ["li", "p"]);
+    } else if (generationSubMode == "ul-p") {
+      paragraphFill(outputElement, mode, blockCount, ["ul"], ["li", "p"]);
+    }
   } else {
     outputElement.innerHTML = "";
   }
@@ -62,16 +72,18 @@ selGenerationMode.addEventListener("change", () => {
     generationSubMode = document.querySelector(
       query + " #selNormalSubMode"
     ).value;
+  } else if (generationMode == "list") {
+    generationSubMode = document.querySelector(
+      query + " #selListSubMode"
+    ).value;
   } else {
     generationSubMode = "";
   }
 });
 
 subModesSelects.forEach((subModeSelect) => {
-  console.log(subModeSelect);
   subModeSelect.addEventListener("change", (e) => {
     generationSubMode = e.target.value;
-    console.log("e");
   });
 });
 
