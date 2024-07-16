@@ -169,7 +169,11 @@ function clearWordBank() {
 
 let noisePosition = 0;
 
-function generateFakeSentence(sentenceMinLength = 10, sentenceMaxLength = 16) {
+function generateFakeSentence(
+  sentenceMinLength = 10,
+  sentenceMaxLength = 16,
+  period = true
+) {
   let sentence = "";
   let wordCount = getRandomIntInclusive(sentenceMinLength, sentenceMaxLength);
   for (let i = 0; i < wordCount; i++) {
@@ -182,7 +186,7 @@ function generateFakeSentence(sentenceMinLength = 10, sentenceMaxLength = 16) {
       sentence += " ";
     }
   }
-  sentence += ". ";
+  if (period) sentence += ". ";
   return sentence;
 }
 
