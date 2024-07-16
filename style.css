@@ -112,11 +112,17 @@ body {
     padding: 5px;
 }
 
-#interface[data-gen-mode="normal"][data-gen-sub-mode="paragraphs"] .genSettingInput.paraCount {
+#interface[data-gen-mode="normal"][data-gen-sub-mode="paragraphs"] :is(.paraCount,
+    .paraMinLen,
+    .paraMaxLen,
+    .senMinLen,
+    .senMaxLen) {
     display: flex;
 }
 
-#interface[data-gen-mode="normal"][data-gen-sub-mode="sentences"] .genSettingInput.senCount {
+#interface[data-gen-mode="normal"][data-gen-sub-mode="sentences"] :is(.senCount,
+    .senMinLen,
+    .senMaxLen) {
     display: flex;
 }
 

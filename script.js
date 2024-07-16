@@ -3,6 +3,10 @@ let generationSubMode = "paragraphs";
 let generationSettings = {
   sentenceCount: 5,
   paragraphCount: 3,
+  paragraphMinLength: 6,
+  paragraphMaxLength: 10,
+  sentenceMinLength: 9,
+  sentenceMaxLength: 15,
 };
 let blockCount = 3;
 
@@ -13,11 +17,36 @@ let inputParagraphCount = document.querySelector(
   "#interface #numParagraphCount"
 );
 let inputSentenceCount = document.querySelector("#interface #numSentenceCount");
+let inputParagraphMinLength = document.querySelector(
+  "#interface #numParagraphMinLength"
+);
+let inputParagraphMaxLength = document.querySelector(
+  "#interface #numParagraphMaxLength"
+);
+
+let inputSentenceMinLength = document.querySelector(
+  "#interface #numSentenceMinLength"
+);
+let inputSentenceMaxLength = document.querySelector(
+  "#interface #numSentenceMaxLength"
+);
 
 function loadDefaultSettingsUI() {
-  let { paragraphCount, sentenceCount } = generationSettings;
+  let {
+    paragraphCount,
+    sentenceCount,
+    paragraphMinLength,
+    paragraphMaxLength,
+    sentenceMinLength,
+    sentenceMaxLength,
+  } = generationSettings;
+  // Load default settings into UI
   inputParagraphCount.value = paragraphCount;
   inputSentenceCount.value = sentenceCount;
+  inputParagraphMinLength.value = paragraphMinLength;
+  inputParagraphMaxLength.value = paragraphMaxLength;
+  inputSentenceMinLength.value = sentenceMinLength;
+  inputSentenceMaxLength.value = sentenceMaxLength;
 }
 
 function generateContent(mode = "u") {
@@ -33,7 +62,8 @@ function generateContent(mode = "u") {
         mode,
         generationSettings.paragraphCount,
         [],
-        ["p"]
+        ["p"],
+        generationSettings
       );
     } else if (generationSubMode == "sentences") {
       console.log(generationSettings.sentenceCount);
@@ -42,18 +72,47 @@ function generateContent(mode = "u") {
         mode,
         generationSettings.sentenceCount,
         ["p"],
-        []
+        [],
+        generationSettings
       );
     }
   } else if (generationMode == "list") {
     if (generationSubMode == "ol-s") {
-      sentenceFill(outputElement, mode, blockCount, ["ol"], ["li"]);
+      sentenceFill(
+        outputElement,
+        mode,
+        blockCount,
+        ["ol"],
+        ["li"],
+        generationSettings
+      );
     } else if (generationSubMode == "ul-s") {
-      sentenceFill(outputElement, mode, blockCount, ["ul"], ["li"]);
+      sentenceFill(
+        outputElement,
+        mode,
+        blockCount,
+        ["ul"],
+        ["li"],
+        generationSettings
+      );
     } else if (generationSubMode == "ol-p") {
-      paragraphFill(outputElement, mode, blockCount, ["ol"], ["li", "p"]);
+      paragraphFill(
+        outputElement,
+        mode,
+        blockCount,
+        ["ol"],
+        ["li", "p"],
+        generationSettings
+      );
     } else if (generationSubMode == "ul-p") {
-      paragraphFill(outputElement, mode, blockCount, ["ul"], ["li", "p"]);
+      paragraphFill(
+        outputElement,
+        mode,
+        blockCount,
+        ["ul"],
+        ["li", "p"],
+        generationSettings
+      );
     }
   } else {
     outputElement.innerHTML = "";
