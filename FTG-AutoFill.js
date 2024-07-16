@@ -33,7 +33,7 @@ function paragraphFill(
   let generatedHTML = "";
 
   // Generate paragraphs in html
-  for (let i = 0; i < blockCount; i++) {
+  for (let i = 0; i < count; i++) {
     generatedHTML +=
       openingWrapping + generateFakeParagraph() + closingWrapping;
   }
@@ -88,7 +88,7 @@ function sentenceFill(
 
   // Generate sentences in html
   let generatedHTML = "";
-  for (let i = 0; i < blockCount; i++) {
+  for (let i = 0; i < count; i++) {
     generatedHTML += openingWrapping + generateFakeSentence() + closingWrapping;
   }
 
