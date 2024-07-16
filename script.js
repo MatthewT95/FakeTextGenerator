@@ -56,6 +56,7 @@ function toggleFormat() {
   }
 }
 
+let interface = document.getElementById("interface");
 let btnRegenerate = document.getElementById("btnRegenerate");
 let btnAppend = document.getElementById("btnAppend");
 let btnPrepend = document.getElementById("btnPrepend");
@@ -66,7 +67,7 @@ let subModesSelects = document.querySelectorAll(
 );
 selGenerationMode.addEventListener("change", () => {
   generationMode = selGenerationMode.value;
-  divGenerationMode.dataset.genmode = selGenerationMode.value;
+  interface.dataset.genMode = selGenerationMode.value;
   let query = "#interface #divGenerationSubMode";
   if (generationMode == "normal") {
     generationSubMode = document.querySelector(
@@ -79,11 +80,13 @@ selGenerationMode.addEventListener("change", () => {
   } else {
     generationSubMode = "";
   }
+  interface.dataset.genSubMode = generationSubMode;
 });
 
 subModesSelects.forEach((subModeSelect) => {
   subModeSelect.addEventListener("change", (e) => {
     generationSubMode = e.target.value;
+    interface.dataset.genSubMode = e.target.value;
   });
 });
 
