@@ -1,16 +1,19 @@
 // Globals
 let minWordLength = 1;
-let maxWordLength = 9;
+let maxWordLength = 12;
 let wordLengthFrequencies = {
-  1: 1,
-  2: 3,
-  3: 3,
-  4: 9,
-  5: 7,
-  6: 4,
-  7: 2,
-  8: 1,
-  9: 1,
+  1: 11,
+  2: 26,
+  3: 49,
+  4: 71,
+  5: 81,
+  6: 71,
+  7: 49,
+  8: 26,
+  9: 11,
+  10: 4,
+  11: 1,
+  12: 1,
 };
 
 let firstLetterASCII = 97;
@@ -46,7 +49,7 @@ let letterFrequencies = {
 
 let wordBank = [];
 let fakeTextGeneratorSettings = {
-  wordBankSize: 350,
+  wordBankSize: 750,
 };
 
 // Functions
@@ -94,7 +97,7 @@ function generateWordLengthDistributed() {
   // loop over all word lengths
   for (let i = minWordLength; i <= maxWordLength; i++) {
     // add word length value to disturbed array 4 times the frequency
-    for (let j = 0; j < wordLengthFrequencies[i.toString()] * 4; j++) {
+    for (let j = 0; j < wordLengthFrequencies[i.toString()]; j++) {
       wordLengthDistributed.push(i);
     }
   }
