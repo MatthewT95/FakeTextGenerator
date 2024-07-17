@@ -81,90 +81,130 @@ function detectSettingsFromUI() {
   generationSettings.itemCount = inputItemCount.value;
   generationSettings.headerLevel = inputHeaderLevel.value;
 }
-
-function generateContent(mode = "u") {
+function regenerateContent(mode = "u") {
   let webPreviewModeHistory = webPreviewMode;
   if (!webPreviewMode) {
     toggleFormat();
   }
 
+  let HTMLContent = "";
+
   if (generationMode == "normal") {
     if (generationSubMode == "paragraphs") {
-      paragraphFill(
-        outputElement,
-        mode,
-        generationSettings.paragraphCount,
-        [],
-        ["p"],
+      let { paragraphCount } = generationSettings;
+      HTMLContent = generateHTMLContent(
+        [paragraphCount],
+        [["p"]],
+        "p",
         generationSettings
       );
     } else if (generationSubMode == "sentences") {
-      sentenceFill(
-        outputElement,
-        mode,
-        generationSettings.sentenceCount,
-        ["p"],
-        [],
+      let { sentenceCount } = generationSettings;
+      HTMLContent = generateHTMLContent(
+        [1, sentenceCount],
+        [["p"], []],
+        "s",
         generationSettings
       );
     }
-  } else if (generationMode == "list") {
-    if (generationSubMode == "ol-s") {
-      sentenceFill(
-        outputElement,
-        mode,
-        generationSettings.itemCount,
-        ["ol"],
-        ["li"],
-        generationSettings
-      );
-    } else if (generationSubMode == "ul-s") {
-      sentenceFill(
-        outputElement,
-        mode,
-        generationSettings.itemCount,
-        ["ul"],
-        ["li"],
-        generationSettings
-      );
-    } else if (generationSubMode == "ol-p") {
-      paragraphFill(
-        outputElement,
-        mode,
-        generationSettings.itemCount,
-        ["ol"],
-        ["li", "p"],
-        generationSettings
-      );
-    } else if (generationSubMode == "ul-p") {
-      paragraphFill(
-        outputElement,
-        mode,
-        generationSettings.itemCount,
-        ["ul"],
-        ["li", "p"],
-        generationSettings
-      );
-    }
-  } else if (generationMode == "header") {
-    let { headerLevel } = generationSettings;
-    sentenceFill(
-      outputElement,
-      mode,
-      1,
-      [],
-      ["h" + headerLevel],
-      generationSettings
-    );
-  } else if (generationMode == "table") {
-    tableFill(outputElement, mode, generationSettings);
-  } else {
-    outputElement.innerHTML = "";
   }
+
+  // Inject content
+  if (mode == "u") {
+    outputElement.innerHTML = HTMLContent;
+  } else if (mode == "a") {
+    outputElement.innerHTML += HTMLContent;
+  } else if (mode == "p") {
+    outputElement.innerHTML = HTMLContent + outputElement.innerHTML;
+  }
+
   if (!webPreviewModeHistory) {
     toggleFormat();
   }
 }
+// function generateContent(mode = "u") {
+//   let webPreviewModeHistory = webPreviewMode;
+//   if (!webPreviewMode) {
+//     toggleFormat();
+//   }
+
+//   if (generationMode == "normal") {
+//     if (generationSubMode == "paragraphs") {
+//       paragraphFill(
+//         outputElement,
+//         mode,
+//         generationSettings.paragraphCount,
+//         [],
+//         ["p"],
+//         generationSettings
+//       );
+//     } else if (generationSubMode == "sentences") {
+//       sentenceFill(
+//         outputElement,
+//         mode,
+//         generationSettings.sentenceCount,
+//         ["p"],
+//         [],
+//         generationSettings
+//       );
+//     }
+//   } else if (generationMode == "list") {
+//     if (generationSubMode == "ol-s") {
+//       sentenceFill(
+//         outputElement,
+//         mode,
+//         generationSettings.itemCount,
+//         ["ol"],
+//         ["li"],
+//         generationSettings
+//       );
+//     } else if (generationSubMode == "ul-s") {
+//       sentenceFill(
+//         outputElement,
+//         mode,
+//         generationSettings.itemCount,
+//         ["ul"],
+//         ["li"],
+//         generationSettings
+//       );
+//     } else if (generationSubMode == "ol-p") {
+//       paragraphFill(
+//         outputElement,
+//         mode,
+//         generationSettings.itemCount,
+//         ["ol"],
+//         ["li", "p"],
+//         generationSettings
+//       );
+//     } else if (generationSubMode == "ul-p") {
+//       paragraphFill(
+//         outputElement,
+//         mode,
+//         generationSettings.itemCount,
+//         ["ul"],
+//         ["li", "p"],
+//         generationSettings
+//       );
+//     }
+//   } else if (generationMode == "header") {
+//     let { headerLevel } = generationSettings;
+//     sentenceFill(
+//       outputElement,
+//       mode,
+//       1,
+//       [],
+//       ["h" + headerLevel],
+//       generationSettings
+//     );
+//   } else if (generationMode == "table") {
+//     tableFill(outputElement, mode, generationSettings);
+//   } else {
+//     outputElement.innerHTML = "";
+//   }
+//   if (!webPreviewModeHistory) {
+//     toggleFormat();
+//   }
+// }
 
 function toggleFormat() {
   if (!webPreviewMode) {
@@ -213,13 +253,13 @@ subModesSelects.forEach((subModeSelect) => {
   });
 });
 
-btnRegenerate.addEventListener("click", () => generateContent("u"));
-btnAppend.addEventListener("click", () => generateContent("a"));
-btnPrepend.addEventListener("click", () => generateContent("p"));
+btnRegenerate.addEventListener("click", () => regenerateContent("u"));
+btnAppend.addEventListener("click", () => regenerateContent("a"));
+btnPrepend.addEventListener("click", () => regenerateContent("p"));
 
 // Intervals
 setInterval(detectSettingsFromUI, 250);
 
 // Initial setup
-generateContent("u");
+regenerateContent("u");
 loadDefaultSettingsUI();
