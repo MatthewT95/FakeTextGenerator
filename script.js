@@ -47,6 +47,9 @@ let inputItemCount = document.querySelector("#interface #numItemCount");
 let inputHeaderLevel = document.querySelector("#interface #numHeaderLevel");
 let inputTblColumns = document.querySelector("#interface #numTblColumns");
 let inputTblRows = document.querySelector("#interface #numTblRows");
+let inputHeadersEnabled = document.querySelector(
+  "#interface #chkTableHeadersEnabled"
+);
 // Functions
 function loadDefaultSettingsUI() {
   let {
@@ -73,6 +76,7 @@ function loadDefaultSettingsUI() {
   inputHeaderLevel.value = headerLevel;
   inputTblColumns.value = tableColumnCount;
   inputTblRows.value = tableRowCount;
+  inputHeadersEnabled.checked = tableHeadersOn;
 }
 
 function detectSettingsFromUI() {
@@ -86,6 +90,7 @@ function detectSettingsFromUI() {
   generationSettings.headerLevel = inputHeaderLevel.value;
   generationSettings.tableColumnCount = inputTblColumns.value;
   generationSettings.tableRowCount = inputTblRows.value;
+  generationSettings.tableHeadersOn = inputHeadersEnabled.checked;
 }
 function regenerateContent(mode = "u") {
   let webPreviewModeHistory = webPreviewMode;

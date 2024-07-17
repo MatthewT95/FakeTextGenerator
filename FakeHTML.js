@@ -5,7 +5,6 @@ function generateFakeHTMLContent(
   genSettings = {}
 ) {
   let generatedHTML = "";
-  console.log(genSettings);
   if (tagWrappings.length != dimensions.length) {
     console.log(
       "tagWrappings array length does not match dimensions array length"
@@ -179,12 +178,10 @@ function generateFakeHTMLContent(
 
 function generateFakeHTMLTable(genSettings) {
   let generatedHTML = "";
-  console.log(genSettings.sentenceMinLength);
   let { tableRowCount, tableColumnCount, tableHeadersOn } = genSettings;
 
   generatedHTML += "<table>";
   if (tableHeadersOn) {
-    console.log(genSettings.sentenceMinLength);
     generatedHTML += generateFakeHTMLContent(
       [1, tableColumnCount],
       [["tr"], ["th"]],

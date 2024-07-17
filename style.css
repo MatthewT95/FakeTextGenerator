@@ -154,7 +154,8 @@ body {
     .paraMaxLen,
     .tblRowCount,
     .tblColumnCount,
-    .tblHeadersOn) {
+    .tblHeadersOn,
+    .tableHeadersEnabled) {
     display: flex
 }
 
