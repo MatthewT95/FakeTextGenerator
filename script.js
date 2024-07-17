@@ -92,18 +92,18 @@ function regenerateContent(mode = "u") {
   if (generationMode == "normal") {
     if (generationSubMode == "paragraphs") {
       let { paragraphCount } = generationSettings;
-      HTMLContent = generateHTMLContent(
+      HTMLContent = generateFakeHTMLContent(
         [paragraphCount],
         [["p"]],
-        "p",
+        [{ inner: "p" }],
         generationSettings
       );
     } else if (generationSubMode == "sentences") {
       let { sentenceCount } = generationSettings;
-      HTMLContent = generateHTMLContent(
+      HTMLContent = generateFakeHTMLContent(
         [1, sentenceCount],
         [["p"], []],
-        "s",
+        [{}, { inner: "s" }],
         generationSettings
       );
     }
