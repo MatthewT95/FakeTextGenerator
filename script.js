@@ -107,6 +107,40 @@ function regenerateContent(mode = "u") {
         generationSettings
       );
     }
+  } else if (generationMode == "list") {
+    if (generationSubMode == "ol-s") {
+      let { itemCount } = generationSettings;
+      HTMLContent = generateFakeHTMLContent(
+        [1, itemCount],
+        [["ol"], ["li"]],
+        [{}, { inner: "s" }],
+        generationSettings
+      );
+    } else if (generationSubMode == "ul-s") {
+      let { itemCount } = generationSettings;
+      HTMLContent = generateFakeHTMLContent(
+        [1, itemCount],
+        [["ul"], ["li"]],
+        [{}, { inner: "s" }],
+        generationSettings
+      );
+    } else if (generationSubMode == "ol-p") {
+      let { itemCount } = generationSettings;
+      HTMLContent = generateFakeHTMLContent(
+        [1, itemCount],
+        [["ol"], ["li"]],
+        [{}, { inner: "p" }],
+        generationSettings
+      );
+    } else if (generationSubMode == "ul-p") {
+      let { itemCount } = generationSettings;
+      HTMLContent = generateFakeHTMLContent(
+        [1, itemCount],
+        [["ul"], ["li"]],
+        [{}, { inner: "p" }],
+        generationSettings
+      );
+    }
   }
 
   // Inject content
