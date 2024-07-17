@@ -45,6 +45,8 @@ let inputSentenceMaxLength = document.querySelector(
 );
 let inputItemCount = document.querySelector("#interface #numItemCount");
 let inputHeaderLevel = document.querySelector("#interface #numHeaderLevel");
+let inputTblColumns = document.querySelector("#interface #numTblColumns");
+let inputTblRows = document.querySelector("#interface #numTblRows");
 // Functions
 function loadDefaultSettingsUI() {
   let {
@@ -69,6 +71,8 @@ function loadDefaultSettingsUI() {
   inputSentenceMaxLength.value = sentenceMaxLength;
   inputItemCount.value = itemCount;
   inputHeaderLevel.value = headerLevel;
+  inputTblColumns.value = tableColumnCount;
+  inputTblRows.value = tableRowCount;
 }
 
 function detectSettingsFromUI() {
@@ -80,6 +84,8 @@ function detectSettingsFromUI() {
   generationSettings.sentenceMaxLength = inputSentenceMaxLength.value;
   generationSettings.itemCount = inputItemCount.value;
   generationSettings.headerLevel = inputHeaderLevel.value;
+  generationSettings.tableColumnCount = inputTblColumns.value;
+  generationSettings.tableRowCount = inputTblRows.value;
 }
 function regenerateContent(mode = "u") {
   let webPreviewModeHistory = webPreviewMode;

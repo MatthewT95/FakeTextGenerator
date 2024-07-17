@@ -113,6 +113,7 @@ body {
     padding: 5px;
 }
 
+/* Generation Settings UI */
 #interface[data-gen-mode="normal"][data-gen-sub-mode="paragraphs"] :is(.paraCount,
     .paraMinLen,
     .paraMaxLen,
@@ -144,6 +145,16 @@ body {
 #interface[data-gen-mode="header"] :is(.headerLevel,
     .senMinLen,
     .senMaxLen) {
+    display: flex
+}
+
+#interface[data-gen-mode="table"] :is(.senMinLen,
+    .senMaxLen,
+    .paraMinLen,
+    .paraMaxLen,
+    .tblRowCount,
+    .tblColumnCount,
+    .tblHeadersOn) {
     display: flex
 }
 
