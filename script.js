@@ -89,6 +89,7 @@ function regenerateContent(mode = "u") {
 
   let HTMLContent = "";
 
+  // Normal generation mode clause
   if (generationMode == "normal") {
     if (generationSubMode == "paragraphs") {
       let { paragraphCount } = generationSettings;
@@ -107,7 +108,9 @@ function regenerateContent(mode = "u") {
         generationSettings
       );
     }
-  } else if (generationMode == "list") {
+  }
+  // List generation mode clause
+  else if (generationMode == "list") {
     if (generationSubMode == "ol-s") {
       let { itemCount } = generationSettings;
       HTMLContent = generateFakeHTMLContent(
@@ -141,6 +144,19 @@ function regenerateContent(mode = "u") {
         generationSettings
       );
     }
+  }
+  // Header generation mode clause
+  else if (generationMode == "header") {
+    let { headerLevel } = generationSettings;
+    HTMLContent = generateFakeHTMLContent(
+      [1],
+      [["h" + headerLevel]],
+      [{ inner: "s" }],
+      generationSettings
+    );
+  } // Table generation mode clause
+  else if (generationMode == "table") {
+    HTMLContent = generateFakeHTMLTable(generationSettings);
   }
 
   // Inject content
