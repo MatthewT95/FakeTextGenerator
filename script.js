@@ -128,7 +128,7 @@ function regenerateContent(mode = "u") {
       let { itemCount } = generationSettings;
       HTMLContent = generateFakeHTMLContent(
         [1, itemCount],
-        [["ol"], ["li"]],
+        [["ol"], ["li", "p"]],
         [{}, { inner: "p" }],
         generationSettings
       );
@@ -136,7 +136,7 @@ function regenerateContent(mode = "u") {
       let { itemCount } = generationSettings;
       HTMLContent = generateFakeHTMLContent(
         [1, itemCount],
-        [["ul"], ["li"]],
+        [["ul"], ["li", "p"]],
         [{}, { inner: "p" }],
         generationSettings
       );
