@@ -1,7 +1,7 @@
-function generateHTMLContent(
+function generateFakeHTMLContent(
   dimensions = [3],
   tagWrappings = [["p"]],
-  type = "p",
+  contentTypes = [{ i: "p" }],
   genSettings = {}
 ) {
   let generatedHTML = "";
@@ -22,19 +22,36 @@ function generateHTMLContent(
   if (tagWrappings.length == 1) {
     for (let i = 0; i < dimensions[0]; i++) {
       let currentWarping = tagWrappings[0];
+
+      // Generate pre-tag content
+      if (typeof contentTypes[0].before !== undefined) {
+        if (contentTypes[0].before == "s") {
+          generatedHTML += generateFakeSentence(
+            sentenceMinLength,
+            sentenceMaxLength
+          );
+        } else if (contentTypes[0].before == "p") {
+          generatedHTML += generateFakeParagraph(
+            paragraphMinLength,
+            paragraphMaxLength,
+            sentenceMinLength,
+            sentenceMaxLength
+          );
+        }
+      }
       // Generate opening tags
       for (let j = 0; j < currentWarping.length; j++) {
         generatedHTML += "<" + currentWarping[j] + ">";
       }
       // Generate text
-      if (type == "p") {
+      if (contentTypes[0].inner == "p") {
         generatedHTML += generateFakeParagraph(
           paragraphMinLength,
           paragraphMaxLength,
           sentenceMinLength,
           sentenceMaxLength
         );
-      } else if (type == "s") {
+      } else if (contentTypes[0].inner == "s") {
         generatedHTML += generateFakeSentence(
           sentenceMinLength,
           sentenceMaxLength
@@ -44,28 +61,115 @@ function generateHTMLContent(
       for (let j = currentWarping.length - 1; j >= 0; j--) {
         generatedHTML += "</" + currentWarping[j] + ">";
       }
+
+      // Generate post-tag content
+      if (typeof contentTypes[0].after !== undefined) {
+        if (contentTypes[0].after == "s") {
+          generatedHTML += generateFakeSentence(
+            sentenceMinLength,
+            sentenceMaxLength
+          );
+        } else if (contentTypes[0].after == "p") {
+          generatedHTML += generateFakeParagraph(
+            paragraphMinLength,
+            paragraphMaxLength,
+            sentenceMinLength,
+            sentenceMaxLength
+          );
+        }
+      }
     }
   } else {
     // Create recursive copy pruning current level
     let dimensionsCopy = dimensions.splice(1, dimensions.length - 1);
     let tagWrappingsCopy = tagWrappings.splice(1, tagWrappings.length - 1);
-    console.log(dimensions.length, dimensionsCopy.length);
+    let contentTypesCopy = contentTypes.splice(1, contentTypes.length - 1);
+
     // Recursively generate content
     for (let i = 0; i < dimensions[0]; i++) {
       let currentWarping = tagWrappings[0];
+      // Generate pre-tag content
+      if (typeof contentTypes[0].before !== undefined) {
+        if (contentTypes[0].before == "s") {
+          generatedHTML += generateFakeSentence(
+            sentenceMinLength,
+            sentenceMaxLength
+          );
+        } else if (contentTypes[0].before == "p") {
+          generatedHTML += generateFakeParagraph(
+            paragraphMinLength,
+            paragraphMaxLength,
+            sentenceMinLength,
+            sentenceMaxLength
+          );
+        }
+      }
+
       // Generate opening tags
       for (let j = 0; j < currentWarping.length; j++) {
         generatedHTML += "<" + currentWarping[j] + ">";
       }
-      generatedHTML += generateHTMLContent(
+
+      // Generate element header
+      if (typeof contentTypes[0].header !== undefined) {
+        if (contentTypes[0].header == "s") {
+          generatedHTML += generateFakeSentence(
+            sentenceMinLength,
+            sentenceMaxLength
+          );
+        } else if (contentTypes[0].header == "p") {
+          generatedHTML += generateFakeParagraph(
+            paragraphMinLength,
+            paragraphMaxLength,
+            sentenceMinLength,
+            sentenceMaxLength
+          );
+        }
+      }
+      generatedHTML += generateFakeHTMLContent(
         dimensionsCopy,
         tagWrappingsCopy,
-        type,
+        contentTypesCopy,
         genSettings
       );
+
+      // Generate element footer
+      if (typeof contentTypes[0].footer !== undefined) {
+        if (contentTypes[0].footer == "s") {
+          generatedHTML += generateFakeSentence(
+            sentenceMinLength,
+            sentenceMaxLength
+          );
+        } else if (contentTypes[0].footer == "p") {
+          generatedHTML += generateFakeParagraph(
+            paragraphMinLength,
+            paragraphMaxLength,
+            sentenceMinLength,
+            sentenceMaxLength
+          );
+        }
+      }
+
       // Generate closing tags
       for (let j = currentWarping.length - 1; j >= 0; j--) {
         generatedHTML += "</" + currentWarping[j] + ">";
+      }
+
+      // Generate post-tag content
+      if (typeof contentTypes[0].after !== undefined) {
+        if (contentTypes[0].after == "s") {
+          generatedHTML += generateFakeSentence(
+            sentenceMinLength,
+            sentenceMaxLength
+          );
+        } else if (contentTypes[0].after == "p") {
+          generatedHTML += generateFakeParagraph(
+            paragraphMinLength,
+            paragraphMaxLength,
+            sentenceMinLength,
+            sentenceMaxLength
+          );
+        }
       }
     }
   }
