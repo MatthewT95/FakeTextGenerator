@@ -4,16 +4,16 @@ body {
 
 #content {
     font-size: 14pt;
-    width: 95vw;
+    width: 100%;
     margin: auto;
-    height: 70vh;
+    height: 78vh;
     overflow-y: scroll;
     background-color: lightblue;
     padding: 10px;
 }
 
 #interface {
-    height: 14vh;
+    height: 12vh;
     width: 100%;
     font-size: 10pt;
     background-color: burlywood;
