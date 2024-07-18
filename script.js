@@ -51,6 +51,11 @@ let inputHeadersEnabled = document.querySelector(
   "#interface #chkTableHeadersEnabled"
 );
 // Functions
+
+function toggleLightMode() {
+  document.getElementById("content").classList.toggle("lightMode");
+}
+
 function loadDefaultSettingsUI() {
   let {
     paragraphCount,

@@ -1,32 +1,47 @@
 body {
-    background-color: lightgrey;
+    background-color: grey;
+    padding: 0px;
+    margin: 0px;
 }
 
 #content {
     font-size: 14pt;
-    width: 100%;
+    box-sizing: border-box;
+    width: 100vw;
     margin: auto;
-    height: 78vh;
+    margin-top: none;
+    height: 80vh;
     overflow-y: scroll;
-    background-color: lightblue;
+    background-color: black;
+    color: white;
     padding: 10px;
 }
 
+#content.lightMode {
+    background-color: white;
+    color: black;
+}
+
 #interface {
-    height: 12vh;
-    width: 100%;
+    height: 16vh;
+    width: 100vw;
+    color: white;
+    box-sizing: border-box;
     font-size: 10pt;
-    background-color: burlywood;
+    background-color: darkblue;
     display: grid;
     grid-template-columns: 130px 200px auto repeat(8, 1fr) 150px;
     grid-template-rows: repeat(3, 1fr);
     padding: 10px;
+    column-gap: 5px;
+    font-weight: bold;
 }
 
 #interface #btnRegenerate,
 #btnPrepend,
 #btnAppend,
-#btnToggleFormat {
+#btnToggleFormat,
+#btnToggleTheme {
     font-size: 12pt;
 }
 
@@ -48,6 +63,11 @@ body {
 #interface #btnToggleFormat {
     grid-column: 12/13;
     grid-row: 1/2;
+}
+
+#interface #btnToggleTheme {
+    grid-column: 12/13;
+    grid-row: 2/3;
 }
 
 #interface #lblGenerationMode,
@@ -97,13 +117,15 @@ body {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    border: black 1px solid;
+    border: lightgreen 3px solid;
+    border-radius: 6px;
 }
 
 #interface #generationSettings>* {
     width: 300px;
     height: 30%;
     box-sizing: border-box;
+    padding: 5px;
 }
 
 #interface #generationSettings>h2 {
@@ -116,7 +138,6 @@ body {
     flex-direction: row;
     align-items: center;
     width: 100%;
-    padding: 5px;
 }
 
 /* Generation Settings UI */
@@ -192,6 +213,14 @@ body {
 th,
 tr,
 td {
-    border: 2px black solid;
+    border: 4px white solid;
+    border-collapse: collapse;
+}
+
+#content.lightMode :is(table,
+    th,
+    tr,
+    td) {
+    border: 4px black solid;
     border-collapse: collapse;
 }
