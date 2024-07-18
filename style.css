@@ -4,7 +4,7 @@ body {
 
 #content {
     font-size: 14pt;
-    width: 90vw;
+    width: 95vw;
     margin: auto;
     height: 70vh;
     overflow-y: scroll;
@@ -18,15 +18,16 @@ body {
     font-size: 10pt;
     background-color: burlywood;
     display: grid;
-    grid-template-columns: 130px 200px auto repeat(9, 1fr);
+    grid-template-columns: 130px 200px auto repeat(8, 1fr) 150px;
     grid-template-rows: repeat(3, 1fr);
     padding: 10px;
 }
 
 #interface #btnRegenerate,
 #btnPrepend,
-#btnAppend {
-    font-size: 14pt;
+#btnAppend,
+#btnToggleFormat {
+    font-size: 12pt;
 }
 
 #interface #btnRegenerate {
@@ -42,6 +43,11 @@ body {
 #interface #btnPrepend {
     grid-column: 1 / 2;
     grid-row: 3 / 4;
+}
+
+#interface #btnToggleFormat {
+    grid-column: 12/13;
+    grid-row: 1/2;
 }
 
 #interface #lblGenerationMode,

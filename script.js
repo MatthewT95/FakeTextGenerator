@@ -203,6 +203,12 @@ function toggleFormat() {
     outputElement.innerHTML = "<code>" + HTMLRawVersion + "</code>";
     webPreviewMode = false;
   }
+
+  if (webPreviewMode) {
+    document.getElementById("btnToggleFormat").innerText = "Show HTML";
+  } else {
+    document.getElementById("btnToggleFormat").innerText = "Web Preview";
+  }
 }
 
 // Event listeners
